@@ -1,0 +1,44 @@
+{
+  "name": "@dyb881/router",
+  "version": "0.1.5",
+  "description": "使用 react-router-dom 封装的路由注册组件 可选 @dyb881/transition 动画跳转",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "typings": "./lib/index.d.ts",
+  "style": "./lib/style.css",
+  "less": "./src/style.less",
+  "scripts": {
+    "build": "tsc && lessc ./src/style.less > ./lib/style.css",
+    "patch": "npm version patch",
+    "minor": "npm version minor",
+    "major": "npm version major",
+    "push": "yarn build && npm publish --access=public"
+  },
+  "author": "dyb881",
+  "license": "ISC",
+  "devDependencies": {
+    "less": "^3.9.0",
+    "typescript": "^3.4.5"
+  },
+  "dependencies": {
+    "@dyb881/transition": "^0.1.8",
+    "@types/react": "^16.8.18",
+    "@types/react-dom": "^16.8.4",
+    "@types/react-router-dom": "^4.3.3",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-router-dom": "^5.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dyb881/router.git"
+  },
+  "keywords": [
+    "router",
+    "transition"
+  ],
+  "bugs": {
+    "url": "https://github.com/dyb881/router/issues"
+  },
+  "homepage": "https://github.com/dyb881/router#readme"
+}
