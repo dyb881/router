@@ -1,8 +1,8 @@
 import React from 'react';
-import { Redirect, Route, Switch, withRouter, RouteComponentProps } from 'react-router-dom';
+import { Redirect, Route, Switch, withRouter, RouteComponentProps, matchPath } from 'react-router-dom';
 import Transition from '@dyb881/transition';
 
-export interface IPage {
+interface IPage {
   [index: string]: React.ComponentType<any>;
 }
 
@@ -27,7 +27,7 @@ const Router: React.SFC<IProps> = ({ app, transition, page, location, history })
     </Switch>
   );
 
-  if (transition && keys.some(i => new RegExp(i.split('/:')[0]).test(location.pathname))) {
+  if (transition && keys.some(i => !!matchPath(location.pathname, { path: i, exact: true }))) {
     const name = app ? (history.action === 'PUSH' ? 'router-go' : 'router-back') : 'fade';
     return <Transition name={name}>{res}</Transition>;
   }
