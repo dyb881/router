@@ -4,40 +4,40 @@
 
 ## 用法
 
-index.ts
+### 引用
 
 ```
-import React from 'react';
 import Router from '@dyb881/router';
 import '@dyb881/router/lib/style.css';
+```
 
-import Home from './home';
-import Test from './test';
+### 配置
 
-/**
- * 导出页面，所有页面都需要绝对定位才可正常播放跳转动画
- */
-export const page = {
-  '/home': Home,
-  '/test/:id?': Test,
+配置路由地址，和对应的页面组件
+
+```
+const routers: any = {
+  '/': 页面组件,
+  '/user': 页面组件,
 };
+```
 
-interface IProps {
-  page: IPage; // 页面配置列表
-  transition?: boolean; // 开启跳转动画
-  app?: boolean; // 是否打包成APP，既启用app模拟跳转
-}
+### 参数说明
 
-/**
- * 页面组件
- */
-class Page extends React.Component {
-  render() {
-    return (
-      <div className="fill">
-        <Router page={page} transition={true} app={false} />
-      </div>
-    );
-  }
-}
+#### routers
+
+路由配置参数
+
+#### transition：boolean
+
+开启页面跳转动画
+
+#### app：boolean
+
+仿 app 跳转动画，在特定情况下可启用
+
+### 示例
+
+```
+<Router page={page} transition={true} app={false} />
 ```
