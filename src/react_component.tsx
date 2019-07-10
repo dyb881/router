@@ -32,7 +32,7 @@ const Router: React.SFC<IProps> = ({ app, transition, routers, location, history
     history.action !== 'REPLACE' &&
     keys.some(i => !!matchPath(location.pathname, { path: i, exact: true }))
   ) {
-    const name = app ? (history.action === 'PUSH' ? 'router-go' : 'router-back') : 'fade';
+    const name = app ? (history.action === 'PUSH' ? 'router-go' : 'router-back') : 'router-fade';
     return <Transition name={name}>{res}</Transition>;
   }
 
