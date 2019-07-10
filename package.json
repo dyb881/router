@@ -1,6 +1,6 @@
 {
   "name": "@dyb881/router",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "使用 react-router-dom 封装的路由注册组件 可选 @dyb881/transition 动画跳转",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
