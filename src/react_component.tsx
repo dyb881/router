@@ -2,12 +2,12 @@ import React from 'react';
 import { Redirect, Route, Switch, withRouter, RouteComponentProps, matchPath } from 'react-router-dom';
 import Transition from '@dyb881/transition';
 
-interface IPage {
+interface IRouters {
   [index: string]: React.ComponentType<any>;
 }
 
 interface IProps extends RouteComponentProps {
-  page: IPage; // 页面配置列表
+  routers: IRouters; // 页面配置列表
   transition?: boolean; // 开启跳转动画
   app?: boolean; // 是否打包成APP，既启用app模拟跳转
 }
@@ -15,13 +15,13 @@ interface IProps extends RouteComponentProps {
 /**
  * 注册路由
  */
-const Router: React.SFC<IProps> = ({ app, transition, page, location, history }) => {
-  const keys = Object.keys(page);
+const Router: React.SFC<IProps> = ({ app, transition, routers, location, history }) => {
+  const keys = Object.keys(routers);
 
   const res = (
     <Switch location={location} key={location.pathname}>
       {keys.map((item, index) => (
-        <Route key={index} path={item} component={page[item]} exact />
+        <Route key={index} path={item} component={routers[item]} exact />
       ))}
       <Redirect to={keys[0]} />
     </Switch>
