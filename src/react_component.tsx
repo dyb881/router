@@ -1,12 +1,12 @@
 import React from 'react';
-import { Redirect, Route, Switch, withRouter, RouteComponentProps, matchPath } from 'react-router-dom';
+import { Redirect, Route, Switch, matchPath, useHistory, useLocation } from 'react-router-dom';
 import Transition from '@dyb881/transition';
 
 interface IRouters {
   [index: string]: React.ComponentType<any>;
 }
 
-interface IProps extends RouteComponentProps {
+interface IProps {
   routers: IRouters; // 页面配置列表
   transition?: boolean; // 开启跳转动画
   app?: boolean; // 是否打包成APP，既启用app模拟跳转
@@ -15,7 +15,9 @@ interface IProps extends RouteComponentProps {
 /**
  * 注册路由
  */
-const Router: React.SFC<IProps> = ({ app, transition, routers, location, history }) => {
+const Router: React.SFC<IProps> = ({ app, transition, routers }) => {
+  const location = useLocation();
+  const history = useHistory();
   const keys = Object.keys(routers);
 
   const res = (
@@ -39,4 +41,4 @@ const Router: React.SFC<IProps> = ({ app, transition, routers, location, history
   return res;
 };
 
-export default withRouter(Router);
+export default Router;

@@ -17,17 +17,17 @@
   "author": "dyb881",
   "license": "ISC",
   "devDependencies": {
-    "less": "^3.9.0",
-    "typescript": "^3.4.5"
+    "less": "^3.10.3",
+    "typescript": "^3.6.4"
   },
   "dependencies": {
-    "@dyb881/transition": "^0.1.8",
-    "@types/react": "^16.8.18",
-    "@types/react-dom": "^16.8.4",
-    "@types/react-router-dom": "^4.3.3",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-router-dom": "^5.0.0"
+    "@dyb881/transition": "^1.0.0",
+    "@types/react": "^16.9.9",
+    "@types/react-dom": "^16.9.2",
+    "@types/react-router-dom": "^5.1.0",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
+    "react-router-dom": "^5.1.2"
   },
   "repository": {
     "type": "git",
