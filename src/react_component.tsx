@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Redirect, Route, Switch, matchPath, useHistory, useLocation } from 'react-router-dom';
 import Transition from '@dyb881/transition';
 
@@ -20,21 +20,29 @@ const Router: React.SFC<IProps> = ({ app, transition, routers }) => {
   const history = useHistory();
   const keys = Object.keys(routers);
 
-  const res = (
-    <Switch location={location} key={location.pathname}>
-      {keys.map((item, index) => (
-        <Route key={index} path={item} component={routers[item]} exact />
-      ))}
-      <Redirect to={keys[0]} />
-    </Switch>
+  const res = useMemo(
+    () => (
+      <Switch location={location} key={location.pathname}>
+        {keys.map((item, index) => (
+          <Route key={index} path={item} component={routers[item]} exact />
+        ))}
+        <Redirect to={keys[0]} />
+      </Switch>
+    ),
+    [location.pathname]
   );
 
-  if (
-    transition &&
-    history.action !== 'REPLACE' &&
-    keys.some(i => !!matchPath(location.pathname, { path: i, exact: true }))
-  ) {
-    const name = app ? (history.action === 'PUSH' ? 'router-go' : 'router-back') : 'router-fade';
+  const isTransition = useMemo(
+    () => transition && keys.some(i => !!matchPath(location.pathname, { path: i, exact: true })),
+    [transition, location.pathname]
+  );
+
+  if (isTransition) {
+    const name = useMemo(() => (app ? (history.action === 'POP' ? 'router-back' : 'router-go') : 'router-fade'), [
+      app,
+      history.action,
+    ]);
+
     return <Transition name={name}>{res}</Transition>;
   }
 
