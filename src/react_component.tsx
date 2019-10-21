@@ -17,9 +17,11 @@ type TProps = RouteComponentProps & {
  */
 const Router: React.SFC<TProps> = ({ app, transition, routers, location, history: { action } }) => {
   const keys = Object.keys(routers);
+  const isTransition = transition && keys.some(i => matchPath(location.pathname, { path: i, exact: true }));
+  const name = app && action !== 'REPLACE' ? (action === 'PUSH' ? 'router-go' : 'router-back') : 'router-fade';
 
   const res = (
-    <Switch location={location} key={location.pathname}>
+    <Switch location={location} key={name + location.pathname}>
       {keys.map((item, index) => (
         <Route key={index} path={item} component={routers[item]} exact />
       ))}
@@ -27,14 +29,7 @@ const Router: React.SFC<TProps> = ({ app, transition, routers, location, history
     </Switch>
   );
 
-  const isTransition = transition && keys.some(i => !!matchPath(location.pathname, { path: i, exact: true }));
-
-  if (isTransition) {
-    const name = app && action !== 'REPLACE' ? (action === 'PUSH' ? 'router-go' : 'router-back') : 'router-fade';
-    return <Transition name={name}>{res}</Transition>;
-  }
-
-  return res;
+  return isTransition ? <Transition name={name}>{res}</Transition> : res;
 };
 
 export default withRouter(Router);
