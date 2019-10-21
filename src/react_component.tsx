@@ -29,7 +29,7 @@ const Router: React.SFC<TProps> = ({ app, transition, routers, location, history
     </Switch>
   );
 
-  return isTransition ? <Transition name={name} key="transition">{res}</Transition> : res;
+  return isTransition ? <Transition name={name} key={name}>{res}</Transition> : res;
 };
 
 export default withRouter(Router);
