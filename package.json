@@ -12,7 +12,8 @@
     "patch": "npm version patch",
     "minor": "npm version minor",
     "major": "npm version major",
-    "push": "yarn build && npm publish --access=public"
+    "push": "yarn build && npm publish --access=public",
+    "auto": "git add . && git commit --m '调整样式' && git push && yarn patch && yarn push"
   },
   "author": "dyb881",
   "license": "ISC",

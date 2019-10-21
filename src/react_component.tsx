@@ -15,7 +15,7 @@ type TProps = RouteComponentProps & {
 /**
  * 注册路由
  */
-const Router: React.SFC<TProps> = ({ app, transition, routers, location, history }) => {
+const Router: React.SFC<TProps> = ({ app, transition, routers, location, history: { action } }) => {
   const keys = Object.keys(routers);
 
   const res = (
@@ -30,7 +30,7 @@ const Router: React.SFC<TProps> = ({ app, transition, routers, location, history
   const isTransition = transition && keys.some(i => !!matchPath(location.pathname, { path: i, exact: true }));
 
   if (isTransition) {
-    const name = app ? (history.action === 'POP' ? 'router-back' : 'router-go') : 'router-fade';
+    const name = app && action !== 'REPLACE' ? (action === 'PUSH' ? 'router-go' : 'router-back') : 'router-fade';
     return <Transition name={name}>{res}</Transition>;
   }
 
